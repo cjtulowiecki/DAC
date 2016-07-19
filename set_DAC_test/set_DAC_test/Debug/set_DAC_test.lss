@@ -1,0 +1,235 @@
+
+set_DAC_test.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00800100  0000017e  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         0000012a  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .comment      00000030  00000000  00000000  0000017e  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000001b0  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000048  00000000  00000000  000001f0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   000002b9  00000000  00000000  00000238  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000184  00000000  00000000  000004f1  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   0000024b  00000000  00000000  00000675  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000074  00000000  00000000  000008c0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    0000020e  00000000  00000000  00000934  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    00000062  00000000  00000000  00000b42  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000038  00000000  00000000  00000ba4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+   8:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+   c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  10:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  14:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  18:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  1c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  20:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  24:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  28:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  2c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  30:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  34:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  38:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  3c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  40:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  44:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  48:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  4c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  50:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  54:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  58:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  5c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  60:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  64:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+  74:	0e 94 5e 00 	call	0xbc	; 0xbc <main>
+  78:	0c 94 93 00 	jmp	0x126	; 0x126 <_exit>
+
+0000007c <__bad_interrupt>:
+  7c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000080 <USART_Init>:
+	while ( !( UCSR0A & (1<<UDRE0)) )
+	{
+		
+	}
+	/* Put data into buffer, sends the data */
+	UDR0 = data;
+  80:	90 93 c5 00 	sts	0x00C5, r25
+  84:	80 93 c4 00 	sts	0x00C4, r24
+  88:	88 e1       	ldi	r24, 0x18	; 24
+  8a:	80 93 c1 00 	sts	0x00C1, r24
+  8e:	86 e0       	ldi	r24, 0x06	; 6
+  90:	80 93 c2 00 	sts	0x00C2, r24
+  94:	08 95       	ret
+
+00000096 <USART_Receive>:
+}
+
+unsigned char USART_Receive( void )
+{
+	/* Wait for data to be received */
+	while ( !(UCSR0A & (1<<RXC0)) )
+  96:	e0 ec       	ldi	r30, 0xC0	; 192
+  98:	f0 e0       	ldi	r31, 0x00	; 0
+  9a:	80 81       	ld	r24, Z
+  9c:	88 23       	and	r24, r24
+  9e:	ec f7       	brge	.-6      	; 0x9a <USART_Receive+0x4>
+	{
+		
+	}
+	/* Get and return received data from buffer */
+	return UDR0;
+  a0:	80 91 c6 00 	lds	r24, 0x00C6
+}
+  a4:	08 95       	ret
+
+000000a6 <SPI_MasterInit>:
+
+void SPI_MasterInit(void)
+{
+	/* Set MOSI and SCK output; all others input */
+	DDRB |= (1<<MOSI)|(1<<SCK);
+  a6:	84 b1       	in	r24, 0x04	; 4
+  a8:	88 62       	ori	r24, 0x28	; 40
+  aa:	84 b9       	out	0x04, r24	; 4
+	/* Enable SPI Mode 1, Master, MSB first, 250 kHz */
+	SPCR = (1<<SPE)|(1<<MSTR)|(1<<CPHA)|(1<<SPR1);
+  ac:	86 e5       	ldi	r24, 0x56	; 86
+  ae:	8c bd       	out	0x2c, r24	; 44
+  b0:	08 95       	ret
+
+000000b2 <SPI_MasterTransmit>:
+}
+
+void SPI_MasterTransmit(unsigned char cData)
+{
+	/* Start transmission */
+	SPDR = cData;
+  b2:	8e bd       	out	0x2e, r24	; 46
+	/* Wait for transmission complete */
+	while(!(SPSR & (1<<SPIF)))
+  b4:	0d b4       	in	r0, 0x2d	; 45
+  b6:	07 fe       	sbrs	r0, 7
+  b8:	fd cf       	rjmp	.-6      	; 0xb4 <SPI_MasterTransmit+0x2>
+	;
+  ba:	08 95       	ret
+
+000000bc <main>:
+{
+	unsigned char addr, instr0, instr1, instr2, instr3;
+	
+	
+	// Setup
+	DDRD |= (1<<LDAC);
+  bc:	57 9a       	sbi	0x0a, 7	; 10
+	DDRB |= (1<<SS);
+  be:	22 9a       	sbi	0x04, 2	; 4
+	PORTB |= (1<<SS);
+  c0:	2a 9a       	sbi	0x05, 2	; 5
+	SPI_MasterInit();
+  c2:	0e 94 53 00 	call	0xa6	; 0xa6 <SPI_MasterInit>
+	USART_Init(MYUBRR);
+  c6:	87 e6       	ldi	r24, 0x67	; 103
+  c8:	90 e0       	ldi	r25, 0x00	; 0
+  ca:	0e 94 40 00 	call	0x80	; 0x80 <USART_Init>
+	//_delay_ms(2000);
+	
+    while(1)
+    {	
+		// Get Address and Instruction from MATLAB
+		addr   = USART_Receive();
+  ce:	0e 94 4b 00 	call	0x96	; 0x96 <USART_Receive>
+		instr0 = USART_Receive();	// lower byte
+  d2:	0e 94 4b 00 	call	0x96	; 0x96 <USART_Receive>
+  d6:	c8 2f       	mov	r28, r24
+		instr1 = USART_Receive();	// middle byte
+  d8:	0e 94 4b 00 	call	0x96	; 0x96 <USART_Receive>
+  dc:	d8 2f       	mov	r29, r24
+		instr2 = USART_Receive();	// upper byte
+  de:	0e 94 4b 00 	call	0x96	; 0x96 <USART_Receive>
+  e2:	18 2f       	mov	r17, r24
+		instr3 = USART_Receive();	// don't care
+  e4:	0e 94 4b 00 	call	0x96	; 0x96 <USART_Receive>
+		/*USART_Transmit(instr2);
+		USART_Transmit(instr1);
+		USART_Transmit(instr0);*/
+	
+		// Write to DAC input buffers
+		PORTB &= ~(1<<SS);
+  e8:	2a 98       	cbi	0x05, 2	; 5
+		SPI_MasterTransmit(instr2);
+  ea:	81 2f       	mov	r24, r17
+  ec:	0e 94 59 00 	call	0xb2	; 0xb2 <SPI_MasterTransmit>
+		SPI_MasterTransmit(instr1);
+  f0:	8d 2f       	mov	r24, r29
+  f2:	0e 94 59 00 	call	0xb2	; 0xb2 <SPI_MasterTransmit>
+		SPI_MasterTransmit(instr0);
+  f6:	8c 2f       	mov	r24, r28
+  f8:	0e 94 59 00 	call	0xb2	; 0xb2 <SPI_MasterTransmit>
+		PORTB |= (1<<SS);
+  fc:	2a 9a       	sbi	0x05, 2	; 5
+		
+		// Wait for NOT BUSY from DAC
+		while(!(PORTD & (1<<BUSY)))
+  fe:	5e 9b       	sbis	0x0b, 6	; 11
+ 100:	fe cf       	rjmp	.-4      	; 0xfe <main+0x42>
+		;
+		
+		// Update DAC outputs
+		PORTD &= ~(1<<LDAC);
+ 102:	5f 98       	cbi	0x0b, 7	; 11
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 104:	8f e9       	ldi	r24, 0x9F	; 159
+ 106:	9f e0       	ldi	r25, 0x0F	; 15
+ 108:	01 97       	sbiw	r24, 0x01	; 1
+ 10a:	f1 f7       	brne	.-4      	; 0x108 <main+0x4c>
+ 10c:	00 c0       	rjmp	.+0      	; 0x10e <main+0x52>
+ 10e:	00 00       	nop
+		_delay_ms(1);
+		PORTD |= (1<<LDAC);
+ 110:	5f 9a       	sbi	0x0b, 7	; 11
+ 112:	9f ef       	ldi	r25, 0xFF	; 255
+ 114:	29 e6       	ldi	r18, 0x69	; 105
+ 116:	88 e1       	ldi	r24, 0x18	; 24
+ 118:	91 50       	subi	r25, 0x01	; 1
+ 11a:	20 40       	sbci	r18, 0x00	; 0
+ 11c:	80 40       	sbci	r24, 0x00	; 0
+ 11e:	e1 f7       	brne	.-8      	; 0x118 <main+0x5c>
+ 120:	00 c0       	rjmp	.+0      	; 0x122 <main+0x66>
+ 122:	00 00       	nop
+ 124:	d4 cf       	rjmp	.-88     	; 0xce <main+0x12>
+
+00000126 <_exit>:
+ 126:	f8 94       	cli
+
+00000128 <__stop_program>:
+ 128:	ff cf       	rjmp	.-2      	; 0x128 <__stop_program>
